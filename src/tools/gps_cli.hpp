@@ -42,15 +42,15 @@ namespace gps_cli
     };
 
     // Terminal commands
-    void terminal_send(neo6::neo6_gps& gps);
-    void terminal_read(neo6::neo6_gps& gps);
+    void terminal_send(neo6::gps& gps);
+    void terminal_read(neo6::gps& gps);
 
     // Terminal commands map
-    const std::unordered_map<std::string, command<void(neo6::neo6_gps& gps)>> TERMINAL_COMMANDS = {
+    const std::unordered_map<std::string, command<void(neo6::gps& gps)>> TERMINAL_COMMANDS = {
         {"send", {"Send the following line encoded as HexString to GPS", terminal_send}},
         {"read", {"Reads a message from GPS", terminal_read}},
         {"r", {"Reads a message from GPS", terminal_read}},
-        {"clear", {"Clears GPS messages", [](neo6::neo6_gps& gps){ gps.clear(); }}}
+        {"clear", {"Clears GPS messages", [](neo6::gps& gps){ gps.clear(); }}}
     };
 
     // Helpers

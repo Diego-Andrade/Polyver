@@ -10,4 +10,7 @@ configure_file(version.hpp.in version.hpp)
 find_package(fmt REQUIRED)
 target_link_libraries(${CMAKE_PROJECT_NAME} fmt::fmt)
 
+find_package(spdlog REQUIRED)
+target_link_libraries(${CMAKE_PROJECT_NAME} spdlog::spdlog)
+
 add_subdirectory(src)

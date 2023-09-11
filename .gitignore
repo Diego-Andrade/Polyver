@@ -17,3 +17,4 @@ _deps
 # Build Output
 build
 .cache
+Debug

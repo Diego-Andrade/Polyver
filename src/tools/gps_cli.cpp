@@ -16,6 +16,7 @@
 #include "../neo6.hpp"
 #include "fmt/color.h"
 #include "fmt/core.h"
+#include "fmt/ranges.h"
 #include "ubx_fmt.hpp"
 
 namespace gps_cli {
@@ -61,11 +62,11 @@ namespace gps_cli {
         }
     }
 
-    void terminal_read(neo6::neo6_gps& gps) {
-        fmt::print("{}\n", gps.read());
+    void terminal_read(neo6::gps& gps) {
+        fmt::print("{}\n", gps.read().data);
     }
 
-    void terminal_send(neo6::neo6_gps& gps) {
+    void terminal_send(neo6::gps& gps) {
         fmt::print("terminal> ");
         std::string console_input;
         std::getline(std::cin, console_input);
@@ -75,7 +76,7 @@ namespace gps_cli {
 
             // Read response from gps
             for (int i = 0; i < 10; i++)
-                fmt::print("{}\n", gps.read());
+                fmt::print("{}\n", gps.read().data);
         } else {
             fmt::print("Failed to parse message\n");
         }
@@ -85,7 +86,7 @@ namespace gps_cli {
         fmt::print("\nStarting terminal\n");
 
         // Opening communicaiton with gps
-        neo6::neo6_gps gps("/dev/serial0");
+        neo6::gps gps("/dev/serial0");
 
         while (true) {
             fmt::print("terminal> ");
